@@ -1,5 +1,7 @@
 WorldSearch User's Manual:
 
+** when added to GitHub, I removed the APIs for the news and maps (news from newsapi.org and maps from google maps)
+
 Welcome to WorldSearch! The project is hosted in the CS50 IDE in the folder project/worldsearch. If you use ls, you should see, among
 other things, application.py, searches.db, static/, and templates/. To begin, run "flask run" on the terminal while in the correct folder.
 Once you click on the link, you will be sent to https://c9294eea-3d30-4e67-bb52-dc9f0a6a4df8-ide.cs50.xyz:8080/?.
