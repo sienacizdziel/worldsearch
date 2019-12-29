@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    News
+{% endblock %}
+
+{% block body %}
+
+<form action="/">
+    <button type="submit" class="btn btn-dark" style="float: left; margin: 10px; overflow: hidden;">Back</button>
+</form>
+
+<h1 style="text-align: center; margin: 30px;">Results for {{ name }}</h2>
+
+<div id='map' style="height: 400px; width: 100%;"></div>
+
+{% for item in news %}
+<p>
+    <form action="{{ item['url'] }}">
+        <img src="{{ item['image'] }}" class="newscenter">
+        <div class="center">
+            <button class="btn btn-dark btn-lg newsbutton" type="submit">
+                {{ item["title"] }} - {{ item["source"] }}
+            </button>
+        </div>
+        <p class="newstext center" style="font-size: 20px;">
+            ({{ item["time"] }}) {{ item["description"] }}
+        </p>
+        <p></p>
+        <p class="enter"></p>
+    </form>
+</p>
+{% endfor %}
+
+<script>
+    function initMap() {
+        var uluru = {lat: {{latitude}}, lng: {{longitude}}};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: uluru,
+            zoom: 15
+        });
+        var marker = new google.maps.Marker({position: uluru, map: map});
+    }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgQp7OCmdRXEh-rtGVcxP8vXdsc1OLdw&callback=initMap"></script>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    WorldSearch
+{% endblock %}
+
+{% block body %}
+    <h1 id="welcome">Welcome to WorldSearch!</h1>
+    <h3 class="center" style="margin-bottom: 20px;">Perfect for when you want to search for news about a general region.</h3>
+    <form action="/" method="post">
+        <div class="form-group center">
+            <input autocomplete="off" class="form-control" type="text" name="input" placeholder="Search a Place">
+        </div>
+        <div class="center">
+          <button class="btn btn-primary" type="submit" style="margin-bottom: 20px;">Search for News</button>
+        </div>
+    </form>
+
+    <h3 class="center" style="margin: 20px">Or click on the place you'd like to search.</h3>
+
+    <div id='map' style="height: 800px; width: 100%;"></div>
+
+    <h5 class="center" style="text-align: right; margin: 30px; font-style: italic;">Created by Siena Cizdziel at Yale University for CS50's Final Project, Fall 2019</h5>
+
+    <script>
+
+        // help with the code from google maps website: https://developers-dot-devsite-v2-prod.appspot.com/maps/documentation/javascript/examples/places-placeid-finder
+
+        function initMap() {
+          var uluru = {lat: 41.31, lng: -72.93};
+          var map = new google.maps.Map(document.getElementById('map'), {
+              center: uluru,
+              zoom: 15
+          });
+
+          var marker = new google.maps.Marker({position: uluru, map: map});
+
+          google.maps.event.addListener(map, 'click', function(event) {
+
+          // help with sending information back to application.py and then redirecting to mapnews.html with the longitude and latitude
+
+          fetch("/mapnews", {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(event.latLng),
+            cache: "no-cache",
+            headers: new Headers({
+              "content-type": "application/json"
+            })
+          })
+          .then(function (response) {
+            if (response.status !== 200) {
+              console.log(`Looks like there was a problem. Status code: ${response.status}`);
+              return;
+            }
+
+          // Going to /mapnews URL and taking the latitude and longitude values with the URL
+            response.json().then(function (place) {
+              console.log(place);
+              let nextUrl = "/mapnews?latitude=" + place.lat + "&longitude=" + place.lng
+              console.log(nextUrl)
+              window.location.href = nextUrl;
+
+            });
+          })
+          .catch(function (error) {
+            console.log("Fetch error: " + error);
+          });
+
+          });
+
+        }
+
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgQp7OCmdRXEh-rtGVcxP8vXdsc1OLdw&callback=initMap&libraries=places"></script>
+{% endblock %}

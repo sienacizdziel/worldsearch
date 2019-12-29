@@ -1,0 +1,54 @@
+#welcome
+{
+    margin: 20px;
+    text-align: center;
+}
+
+.form-control
+{
+    display: inline-block;
+    width: auto;
+}
+
+body
+{
+    margin: 10px;
+}
+
+#error
+{
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.newscenter
+{
+    width: 30%;
+    padding: 0 15px;
+    float: right;
+    margin: 20px;
+}
+
+.newsbutton
+{
+    margin-top: 30px;
+    width: 800px;
+    white-space: normal;
+}
+
+.newstext
+{
+    margin: 30px;
+    margin-left: 50px;
+}
+
+.enter
+{
+    clear: both;
+}
+
+.center
+{
+    text-align: center;
+}
