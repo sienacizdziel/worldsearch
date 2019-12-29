@@ -9,11 +9,10 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 db = SQL("sqlite:///searches.db")
 
-
 def map_search(input):
 
     # Contact API
-    api_key = "AIzaSyDJgQp7OCmdRXEh-rtGVcxP8vXdsc1OLdw"
+    api_key = ""
     response = requests.get(f"https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={input}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key={api_key}")
 
     # Parse response
@@ -34,7 +33,7 @@ def map_search(input):
 def map_search2(latitude, longitude):
 
     # Contact API
-    api_key = "AIzaSyDJgQp7OCmdRXEh-rtGVcxP8vXdsc1OLdw"
+    api_key = ""
     response = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?latlng={latitude},{longitude}&key={api_key}")
 
     # Parse response
@@ -54,7 +53,7 @@ def map_search2(latitude, longitude):
 def news_search(place):
 
     # Contact API
-    api_key = "1111438c4a664b8895916ebb98fcf317"
+    api_key = ""
     response = requests.get(f"https://newsapi.org/v2/everything?q={place}&sortBy=popularity&apiKey={api_key}")
 
     # Parse response
