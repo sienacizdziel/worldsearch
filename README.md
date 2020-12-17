@@ -1,3 +1,5 @@
+DEMO VIDEO: https://www.youtube.com/watch?v=JUCtD4GcxQ0&feature=youtu.be
+
 WorldSearch User's Manual:
 
 ** when added to GitHub, I removed the APIs for the news and maps (news from newsapi.org and maps from google maps)
